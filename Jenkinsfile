@@ -4,8 +4,8 @@ pipeline {
     stage('Build') {
       agent any
       steps {
-        git(url: 'https://github.com/dwielocha/blue-jenny-test', branch: 'development')
         sh 'composer install'
+        sh 'find . -name "*.php" -print0 | xargs -0 -n1 php -l'
       }
     }
     stage('Testing') {
